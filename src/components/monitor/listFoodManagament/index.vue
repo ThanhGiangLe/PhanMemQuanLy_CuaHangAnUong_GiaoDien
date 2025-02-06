@@ -56,7 +56,7 @@
                     :src="foodItem.imageUrl"
                     alt="Food Item"
                     class="foodManagement_listFoodOrder_menu_foods_item_img rounded-lg"
-                    style="height: 140px;"
+                    style="height: 140px"
                   />
                   <span
                     class="mt-3"
@@ -202,7 +202,7 @@
           </v-container>
         </div>
       </div>
-      <div v-else class="pa-4" style="width: 66%;">
+      <div v-else class="pa-4" style="width: 66%">
         <v-row>
           <!-- Skeleton cho food categories -->
           <v-col cols="12">
@@ -496,7 +496,10 @@
           color="orange-darken-2"
           >Đặt món</v-btn
         >
-        <v-btn class="w-100" style="margin-bottom: 20px" color="blue-darken-4"
+        <v-btn
+          class="w-100"
+          style="margin-bottom: 20px"
+          color="blue-darken-4"
           @click="callApiOrderFoodAndAddTable"
           >Đặt món và chọn bàn</v-btn
         >
@@ -514,16 +517,14 @@
               style="padding: 0 4px"
             >
               <!-- Hiển thị MenuList component bên trong dialog -->
-              <AreaManagement v-if="showComponentAreaManagement" 
-              @closeAndReset="handleCloseAndReset"/>
+              <AreaManagement
+                v-if="showComponentAreaManagement"
+                @closeAndReset="handleCloseAndReset"
+              />
             </v-card-text>
 
             <v-card-actions>
-              <v-btn
-                @click="
-                  handleShowComponentAreaManagement
-                "
-                color="red"
+              <v-btn @click="handleShowComponentAreaManagement" color="red"
                 >Đóng</v-btn
               >
             </v-card-actions>
@@ -535,46 +536,33 @@
 </template>
 
 <script setup>
-import useFoodManagement from './foodManagement.js';
+import useFoodManagement from "./foodManagement.js";
 import AreaManagement from "@/components/monitor/areaManagement/index.vue";
 
 const {
   // State variables
-  showDialogUpdate,
-  isStaff,
-  currentDish,
   foodCategories,
-  foodItems,
-  additionalFoods,
   search,
   detailItem,
-  currentFoodItem,
   visibleUpdateCurrentFoodSelected,
   showComponentAreaManagement,
   loading,
-  
+
   // Computed properties
-  user,
   filteredFoodItems,
   resultTotalAmount,
 
   // Data objects
   listDashSelected,
   currentOrderItem,
-  resultOrderItem, 
+  resultOrderItem,
   updateOrderItem,
-  resultUpdateOrderItem,
   currentOrder,
 
   // Methods
-  init,
-  format,
   tonggleSelected,
-  getCurrentDateTimeForSQL,
-  resetOrderItem,
   selectedFoodItem,
   nonSelectedFoodItem,
-  updateTotalAmount,
   totalAmountAdditionalFoodItem,
   formatCurrency,
   openDialogShowDetail,
@@ -583,8 +571,7 @@ const {
   updateCurrentFoodSelected,
   updateFoodItem,
   deleteCurrentFoodSelected,
-  resetCurrentOrder,
   callApiOrderFood,
-  callApiOrderFoodAndAddTable
+  callApiOrderFoodAndAddTable,
 } = useFoodManagement();
 </script>

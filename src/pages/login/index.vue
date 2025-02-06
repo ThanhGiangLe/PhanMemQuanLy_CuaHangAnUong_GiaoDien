@@ -5,6 +5,7 @@
       elevation="8"
       max-width="448"
       rounded="lg"
+      @keydown.enter="verifyLoginAccount"
     >
       <div class="text-subtitle-1 text-medium-emphasis">Phone</div>
 

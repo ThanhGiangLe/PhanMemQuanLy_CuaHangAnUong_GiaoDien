@@ -116,46 +116,82 @@
                     alt="Food Item"
                     class="foodManagement_listFoodOrder_menu_foods_item_img rounded-lg"
                   />
-                  
+
                   <!-- Thông tin món ăn -->
-                  <div class="d-flex flex-column mt-3" style="gap: 8px;">
+                  <div class="d-flex flex-column mt-3" style="gap: 8px">
                     <div class="d-flex align-center">
-                      <div style="min-width: 105px; color: #666;">Mã món ăn:</div>
+                      <div style="min-width: 105px; color: #666">
+                        Mã món ăn:
+                      </div>
                       <div>{{ foodItem.foodItemId }}</div>
                     </div>
 
                     <div class="d-flex align-center">
-                      <div style="min-width: 105px; color: #666;">Tên món ăn:</div>
-                      <div style="
-                        height: 16.56px;
-                        line-height: 16.56px;
-                        display: -webkit-box;
-                        -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 1;
-                        overflow: hidden;
-                      ">
+                      <div style="min-width: 105px; color: #666">
+                        Tên món ăn:
+                      </div>
+                      <div
+                        style="
+                          height: 16.56px;
+                          line-height: 16.56px;
+                          display: -webkit-box;
+                          -webkit-box-orient: vertical;
+                          -webkit-line-clamp: 1;
+                          overflow: hidden;
+                        "
+                      >
                         {{ foodItem.foodName }}
                       </div>
                     </div>
 
                     <div class="d-flex align-center">
-                      <div style="min-width: 105px; color: #666;">Giá niêm yết:</div>
-                      <div>{{ formatCurrency(foodItem.priceListed) }} vnd/{{ foodItem.unit }}</div>
+                      <div style="min-width: 105px; color: #666">
+                        Giá niêm yết:
+                      </div>
+                      <div>
+                        {{ formatCurrency(foodItem.priceListed) }} vnd/{{
+                          foodItem.unit
+                        }}
+                      </div>
                     </div>
 
                     <div class="d-flex align-center">
-                      <div style="min-width: 105px; color: #666;">Giá bán ra:</div>
-                      <div>{{ formatCurrency(foodItem.priceCustom) }} vnd/{{ foodItem.unit }}</div>
+                      <div style="min-width: 105px; color: #666">
+                        Giá bán ra:
+                      </div>
+                      <div>
+                        {{ formatCurrency(foodItem.priceCustom) }} vnd/{{
+                          foodItem.unit
+                        }}
+                      </div>
                     </div>
 
                     <div class="d-flex align-center">
-                      <div style="min-width: 105px; color: #666;">Loại danh mục:</div>
+                      <div style="min-width: 105px; color: #666">
+                        Loại danh mục:
+                      </div>
                       <div>{{ getCategoryName(foodItem.categoryId) }}</div>
                     </div>
 
                     <div class="d-flex align-center">
-                      <div style="min-width: 105px; color: #666;">Tình trạng món:</div>
+                      <div style="min-width: 105px; color: #666">
+                        Tình trạng món:
+                      </div>
                       <div>{{ foodItem.status }}</div>
+                    </div>
+
+                    <div class="d-flex align-center">
+                      <div style="min-width: 105px; color: #666">
+                        Thời gian tạo:
+                      </div>
+                      <div>{{ formatDate(foodItem.createDate) }}</div>
+                    </div>
+
+                    <div class="d-flex align-center">
+                      <div style="min-width: 105px; color: #666">
+                        Thời gian cập nhật:
+                      </div>
+                      <div>{{ formatDate(foodItem.updateDate) }}</div>
                     </div>
                   </div>
                   <!-- Buttons -->
@@ -171,8 +207,7 @@
                       @click="openDialogShowUpdateFoodItemSelected(foodItem)"
                     >
                       Thay đổi
-                    </v-btn
-                    >
+                    </v-btn>
 
                     <v-btn
                       class="foodManagement_listFoodOrder_menu_foods_item_addFood ms-1"
@@ -323,7 +358,7 @@
           </v-container>
         </div>
       </div>
-      <div v-else class="pa-4" style="width: 66%;">
+      <div v-else class="pa-4" style="width: 66%">
         <v-row>
           <!-- Skeleton cho food categories -->
           <v-col cols="12">
@@ -367,62 +402,37 @@
 </template>
 
 <script setup>
-import useFoodManagement from './foodManagement.js';
+import useFoodManagement from "./foodManagement.js";
 import AreaManagement from "@/components/monitor/areaManagement/index.vue";
 
 const {
   // State variables
-  showDialogUpdate,
   showDialogAdd,
-  isStaff,
-  currentDish,
   foodCategories,
-  foodItems,
-  additionalFoods,
   search,
-  visibleUpdateCurrentFoodSelected,
-  showComponentAreaManagement,
   modalConfirmDeleteFoodItem,
   modalUpdateFoodItem,
   foodItemCurrentUpdate,
   loading,
-  
+
   // Computed properties
   user,
   filteredFoodItems,
-  resultTotalAmount,
 
   // Data objects
   listDashSelected,
   foodAdd,
   currentOrderItem,
-  resultOrderItem, 
-  updateOrderItem,
-  resultUpdateOrderItem,
-  currentOrder,
 
   // Methods
-  init,
-  format,
+  formatDate,
   saveFood,
   getCategoryName,
   tonggleSelected,
-  getCurrentDateTimeForSQL,
-  resetOrderItem,
-  updateTotalAmount,
-  totalAmountAdditionalFoodItem,
   formatCurrency,
   openDialogShowDeleteFoodItemSelected,
   confimDeleteFoodItem,
   openDialogShowUpdateFoodItemSelected,
-  handleShowComponentAreaManagement,
-  handleCloseAndReset,
   confirmUpdateFoodItem,
-  updateCurrentFoodSelected,
-  updateFoodItem,
-  deleteCurrentFoodSelected,
-  resetCurrentOrder,
-  callApiOrderFood,
-  callApiOrderFoodAndAddTable
 } = useFoodManagement();
 </script>

@@ -93,6 +93,28 @@
         </v-tabs-window-item>
       </v-tabs-window>
     </v-card-text>
+
+    <!-- Chat bot -->
+    <div class="chatbot-button-container">
+      <button class="chatbot-button" @click="toggleChatbot">
+        <v-icon>mdi-chat</v-icon>
+      </button>
+      <div v-if="chatbotVisible" class="chatbot-dialog">
+        <div class="chatbot-dialog-header">
+          <span>Chatbot</span>
+          <v-icon class="close-icon" @click="toggleChatbot">mdi-close</v-icon>
+        </div>
+        <div class="chatbot-dialog-body">
+          <div class="chatbot-dialog-body-request">
+            <textarea placeholder="Nhập tin nhắn..."></textarea>
+          </div>
+          <div class="chatbot-dialog-body-response">
+            <textarea placeholder="Nhập tin nhắn..."></textarea>
+          </div>
+          <button>Gửi</button>
+        </div>
+      </div>
+    </div>
   </v-card>
 </template>
 <script setup>
@@ -124,6 +146,7 @@ const dialogVisibleInfo = ref(false);
 const newPassword = ref("");
 const newConfirmPassword = ref("");
 const tab = ref("main");
+const chatbotVisible = ref(false);
 
 // Lấy thông tin người dùng từ store
 const user = computed(() => userStore.user);
@@ -133,89 +156,7 @@ const updateGlobalVariableCurrentPage = (indexPage) => {
   globalStore.updateGlobalVariableCurrentPage(indexPage);
 };
 
-// const exitAccountCurrent = () => {
-//   userStore.clearUser();
-//   router.push("/login");
-// };
-
-// const openDialogInfo = () => {
-//   dialogVisibleInfo.value = true;
-// };
-
-// const closeDialogInfo = () => {
-//   dialogVisibleInfo.value = false;
-// };
-
-// async function UpdatePassword() {
-//   if (newPassword.value.trim() == "" || newConfirmPassword.value.trim() == "") {
-//     toast.warn("Please enter a valid Password.", {
-//       position: "top-right",
-//       autoClose: 3000,
-//       hideProgressBar: false, // Hiện thanh tiến trình
-//       closeOnClick: true, // Đóng khi nhấp vào thông báo
-//       pauseOnHover: true, // Dừng khi di chuột lên thông báo
-//       draggable: true, // Kéo thông báo
-//       progress: undefined, // Tiến độ (nếu có)
-//     });
-//     return;
-//   }
-//   if (newPassword.value !== newConfirmPassword.value) {
-//     toast.warn("Passwords do not match. Please try again.", {
-//       position: "top-right",
-//       autoClose: 3000,
-//       hideProgressBar: false, // Hiện thanh tiến trình
-//       closeOnClick: true, // Đóng khi nhấp vào thông báo
-//       pauseOnHover: true, // Dừng khi di chuột lên thông báo
-//       draggable: true, // Kéo thông báo
-//       progress: undefined, // Tiến độ (nếu có)
-//     });
-//     return;
-//   }
-//   try {
-//     console.log("user.email", user.value.email);
-//     console.log("confirmPassword.value", newConfirmPassword.value);
-//     const response = await axios.post(API_ENDPOINTS.UPDATE_PASSWORD, {
-//       Email: user.value.email,
-//       NewPassword: newConfirmPassword.value,
-//     });
-
-//     if (response.data.success) {
-//       toast.success("Password updated successfully!", {
-//         position: "top-right",
-//         autoClose: 2000,
-//         hideProgressBar: false, // Hiện thanh tiến trình
-//         closeOnClick: true, // Đóng khi nhấp vào thông báo
-//         pauseOnHover: true, // Dừng khi di chuột lên thông báo
-//         draggable: true, // Kéo thông báo
-//         progress: undefined, // Tiến độ (nếu có)
-//       });
-//       setTimeout(() => {
-//         router.push("/login");
-//       }, 2000);
-//     } else {
-//       toast.error("Failed to update password. Please check your OTP.", {
-//         position: "top-right",
-//         autoClose: 2000,
-//         hideProgressBar: false, // Hiện thanh tiến trình
-//         closeOnClick: true, // Đóng khi nhấp vào thông báo
-//         pauseOnHover: true, // Dừng khi di chuột lên thông báo
-//         draggable: true, // Kéo thông báo
-//         progress: undefined, // Tiến độ (nếu có)
-//       });
-//     }
-//   } catch (error) {
-//     toast.error(
-//       "An error occurred while updating the password. Please try again.",
-//       {
-//         position: "top-right",
-//         autoClose: 3000,
-//         hideProgressBar: false, // Hiện thanh tiến trình
-//         closeOnClick: true, // Đóng khi nhấp vào thông báo
-//         pauseOnHover: true, // Dừng khi di chuột lên thông báo
-//         draggable: true, // Kéo thông báo
-//         progress: undefined, // Tiến độ (nếu có)
-//       }
-//     );
-//   }
-// }
+const toggleChatbot = () => {
+  chatbotVisible.value = !chatbotVisible.value;
+};
 </script>

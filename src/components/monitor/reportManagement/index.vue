@@ -51,5 +51,5 @@ import ReportRevenue from "./reportRevenue.vue";
 import BestSellingItemsReport from "./bestSellingItemsReport.vue";
 import InventoryReport from "./inventoryReport.vue";
 import BillingReport from "./billingReport.vue";
-const valueVisiable = ref(0);
+const valueVisiable = ref(1);
 </script>
